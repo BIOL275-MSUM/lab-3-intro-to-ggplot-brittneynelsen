@@ -10,18 +10,36 @@ firefly_data <- read_csv("https://whitlockschluter.zoology.ubc.ca/wp-content/dat
 firefly_data # Confirming data was correct
 
 
-# First Plot --------------------------------------------------------------
+# Graph -------------------------------------------------------------------
 
-ggplot(data = firefly_data) # made blank graph
-ggplot(data = firefly_data) +
-  geom_histogram(mapping = aes(x = spermatophoreMass))
-
-
-# Final Plot ----------------------------------------------------------
+ggplot(data = firefly_data) 
 
 ggplot(data = firefly_data) +
-  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02) +
-labs(x = "SpermatophoreMass", y = "count (number of males)")
+  geom_histogram(mapping = aes(x = spermatophoreMass)) 
+ggplot(data = firefly_data) +
+  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02) 
+ggplot(data = firefly_data) +
+  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02,
+                 boundary = 0, closed = "left") 
+
+# Making graph look good --------------------------------------------------
+
+ggplot(data = firelfy_data) +
+  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02,
+                 boundary = 0, closed = "left")
+
+ggplot(data = firefly_data) +
+  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02,
+                 fill = "#C5351B", color = "black") +
+  labs(x = "Mass of Spermatophore (mg)", y = "Frequency (number of males)") +
+  theme_classic() +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black", size = rel(1))
+  )
+
+
+
 
 
 

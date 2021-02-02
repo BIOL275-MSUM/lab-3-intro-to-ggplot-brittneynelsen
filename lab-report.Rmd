@@ -21,13 +21,31 @@ The path to the data is "https://whitlockschluter.zoology.ubc.ca/wp-content/data
 
 > A. Insert an R code chunk and create a graph depicting the frequency distribution of the 35 mass measurements. It should have legible text and appropriate axis labels.
 
-ggplot(data = firefly_data) # made blank graph
-ggplot(data = firefly_data) +
-  geom_histogram(mapping = aes(x = spermatophoreMass))
+```{r}
+# Firefly Data -----------------------------------------------------------
 
+library(tidyverse)
+
+
+# Read Data -----------------------------------------------------------------
+
+firefly_data <- read_csv("https://whitlockschluter.zoology.ubc.ca/wp-content/data/chapter02/chap02q19FireflySpermatophoreMass.csv")
+firefly_data # Confirming data was correct
+
+
+# Graph -------------------------------------------------------------------
 ggplot(data = firefly_data) +
-  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02)
-labs(x = "spermatophoreMass", y = "count (number of males)")
+  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02,
+                 fill = "#C5351B", color = "black") +
+  labs(x = "Mass of Spermatophore (mg)", y = "Frequency (number of males)") +
+  theme_classic() +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black", size = rel(1))
+  )
+```
+
+
 
 > B. What type of graph did you choose in part (A)? Why?
 
@@ -62,6 +80,7 @@ There are 41 orders. I made a contigency table consisting of the orders and freq
 
 > F. Insert an R code chunk and create a graph depicting the distribution of orders in the birds dataset. Sort the orders with the most frequent on the left. It should have legible text and appropriate axis labels.
 
+```{r}
 ggplot(data = birds) +
   geom_bar(mapping = aes(x = fct_infreq(order)), fill = "#C5351B", 
            width = .8) +
@@ -73,6 +92,8 @@ ggplot(data = birds) +
     axis.text = element_text(color = "black", size = rel(0.65)),
     axis.text.x = element_text(angle = 45, hjust = 1)
   )  
+```
+
 
 > G. What kind of graph did you create? Why?
 
