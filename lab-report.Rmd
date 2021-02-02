@@ -63,7 +63,7 @@ Mode.
 
 The ebird_taxonomy dataset in the auk package is a simplified version of the taxonomy used by eBird. This taxonomy is based on the Clements Checklist. The dataset contains all known species of birds and their taxonomic order and family. The code below creates a new dataset named birds which consists of
 
-```
+```{r}
 library(auk)                          # load the auk package
 birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
   as_tibble() %>%                     # tibbles print better in the console
