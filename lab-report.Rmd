@@ -1,6 +1,6 @@
 ---
 title: "Lab 3 Report"
-author: "___"
+author: "brittneynelsen"
 date: "`r format(Sys.Date())`"
 output: github_document
 ---
@@ -21,25 +21,31 @@ The path to the data is "https://whitlockschluter.zoology.ubc.ca/wp-content/data
 
 > A. Insert an R code chunk and create a graph depicting the frequency distribution of the 35 mass measurements. It should have legible text and appropriate axis labels.
 
-\_\_\_
+ggplot(data = firefly_data) # made blank graph
+ggplot(data = firefly_data) +
+  geom_histogram(mapping = aes(x = spermatophoreMass))
+
+ggplot(data = firefly_data) +
+  geom_histogram(mapping = aes(x = spermatophoreMass), binwidth = 0.02)
+labs(x = "spermatophoreMass", y = "count (number of males)")
 
 > B. What type of graph did you choose in part (A)? Why?
 
-\_\_\_
+I chose a histogram because it shows the distribution of one numerical variable,fireflies. They are better at showing frequency distribution.
 
 > C. Describe the shape of the frequency distribution. What are its main features?
 
-\_\_\_
+The shape of the frequency of the graph is right skewed. There was an outlier sitting at the points, 0.17mg through 0.18mg. There was also a bell-shaped curve between the points 0.03 mg and 0.10 mg. 
 
 > D. What term would be used to describe the largest measurement in the frequency distribution? You can refer to the lecture slides, your notes, or the textbook.
 
-\_\_\_
+Mode.
 
 ## Bird orders
 
 The ebird_taxonomy dataset in the auk package is a simplified version of the taxonomy used by eBird. This taxonomy is based on the Clements Checklist. The dataset contains all known species of birds and their taxonomic order and family. The code below creates a new dataset named birds which consists of
 
-```{r}
+```
 library(auk)                          # load the auk package
 birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
   as_tibble() %>%                     # tibbles print better in the console
@@ -48,25 +54,35 @@ birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
 
 > E. How many bird species are in the new birds dataset? How did you find out?
 
-\_\_\_
+There are 10,721 bird species. I created a table showing scientific names, from this point I was able to determine that there were 10,721 rows representing the species.
 
 > H. How many orders are there? You can get this right by counting on the graph, but you will only get full points if you use some code to figure it out.
 
-\_\_\_
+There are 41 orders. I made a contigency table consisting of the orders and frequency. The 41 rows allow me to see that there are 41 orders.
 
 > F. Insert an R code chunk and create a graph depicting the distribution of orders in the birds dataset. Sort the orders with the most frequent on the left. It should have legible text and appropriate axis labels.
 
-\_\_\_
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = fct_infreq(order)), fill = "#C5351B", 
+           width = .8) +
+  labs(x = "Order", y = "Frequency (number of species)") +
+  scale_y_log10() +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black", size = rel(0.65)),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )  
 
 > G. What kind of graph did you create? Why?
 
-\_\_\_
+I created a bar graph because the bar graph represents the number of birds in that species that were identified. There were many different categorical values. You couldn't use a Histogram because that is for one specific numerical value.
 
 ## Links to peer review
 
-I reviewed \_\_\_'s lab report at this URL: \_\_\_
+I reviewed Ethans's lab report at this URL: https://github.com/BIOL275-MSUM/lab-3-intro-to-ggplot-Ethan-Dotzler
 
-\_\_\_ reviewed my lab report at this URL: \_\_\_
+Ethan reviewed my lab report at this URL: https://github.com/BIOL275-MSUM/lab-3-intro-to-ggplot-brittneynelsen
 
 ## Session Info
 
